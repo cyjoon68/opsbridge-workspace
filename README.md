@@ -1,57 +1,56 @@
 # OpsBridge Workspace
 
-Public portfolio workspace for a Frontend / Product Engineer application.
+운영 변경 요청, 승인, 감사 로그, rollback 준비 상태를 추적할 수 있도록 만든 운영 워크플로우 대시보드 프로젝트입니다.
 
-## Repository topology
+## 저장소 구성
 
-- Organization workspace: `https://github.com/opsbridge-labs/opsbridge-workspace`
-- Personal mirror: `https://github.com/cyjoon68/opsbridge-workspace`
-- App submodule: `https://github.com/opsbridge-labs/opsbridge-fe`
-- API submodule: `https://github.com/opsbridge-labs/opsbridge-be`
-- Default branch: `develop`
-- `main` branch is retained.
+- FE: [`opsbridge-fe`](https://github.com/opsbridge-labs/opsbridge-fe)
+- BE: [`opsbridge-be`](https://github.com/opsbridge-labs/opsbridge-be)
+- 개인 공개 미러: https://github.com/cyjoon68/opsbridge-workspace
+- 기본 브랜치: `develop`
 
-## Implementation scope
+## 핵심 기능
 
-- FE: React, TypeScript, `ky`, TanStack Query, D3, jQuery/Ajax compatibility, Playwright smoke test.
-- BE: Python Flask RESTful API, MVC, PostgreSQL, SQLAlchemy 2.0 Async Mode, pytest, OpenAPI, k6.
-- demo-backend conversion: auth/user/phone/token ideas converted to REST. GraphQL is not used.
+- 운영 변경 요청 목록 확인
+- 승인 대기/승인 완료/rollback 준비 상태 표시
+- 감사 로그 검색 API
+- D3 기반 운영 상태 추세 시각화
+- MVC 구조 기반 변경 요청 controller/service/repository 분리
 
-## Local commands
-
-```bash
-git submodule update --init --recursive
-cd opsbridge-fe && npm install && npm run build
-cd ../opsbridge-be && python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt && pytest
-```
-
-## Screenshot
+## 화면
 
 ![OpsBridge dashboard](docs/screenshots/dashboard.png)
 
-## API example
+## 기술 스택
 
-```http
-POST /api/auth/login
-POST /api/auth/refresh
-GET /api/dashboard
-PATCH /api/events/{event_id}/status
+- Frontend: React, TypeScript, ky, TanStack Query, D3
+- Backend: Python, Flask, SQLAlchemy 2.0 Async Mode
+- Database: PostgreSQL
+- Infra/Test: Docker Compose, OpenAPI, pytest, k6, Playwright
+
+## 실행
+
+```bash
+git submodule update --init --recursive
+
+cd opsbridge-fe
+npm install
+npm run dev
+
+cd ../opsbridge-be
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+pytest
 ```
 
-## ERD
+## 데이터 흐름
 
-```mermaid
-erDiagram
-  admin_users ||--o{ refresh_tokens : owns
-  admin_users ||--o{ change_requests : creates
-  change_requests ||--o{ approvals : receives
-  change_requests ||--o{ audit_logs : writes
+```text
+Ops Dashboard
+  -> ky client
+  -> Flask Controller
+  -> Service
+  -> SQLAlchemy Async
+  -> PostgreSQL
 ```
-
-## Verification
-
-- `npm install && npm run build`: passed
-- `npm audit --audit-level=critical`: passed, 0 vulnerabilities
-- `npm run test:e2e`: passed, 1 Playwright smoke test
-- `pip install -r requirements.txt && pytest`: passed, 2 tests
-- Screenshot captured with Playwright
