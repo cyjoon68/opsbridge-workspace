@@ -1,6 +1,7 @@
 # OpsBridge Workspace
 
-![React](https://img.shields.io/badge/React-18-61dafb?logo=react)
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react)
+![React Compiler](https://img.shields.io/badge/React_Compiler-enabled-149eca)
 ![Flask](https://img.shields.io/badge/Flask-REST-000000?logo=flask)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-SQLAlchemy_Async-4169e1?logo=postgresql)
 ![Branch](https://img.shields.io/badge/branch-develop-2ea44f)
