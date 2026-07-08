@@ -1,5 +1,10 @@
 # OpsBridge Workspace
 
+![React](https://img.shields.io/badge/React-18-61dafb?logo=react)
+![Flask](https://img.shields.io/badge/Flask-REST-000000?logo=flask)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-SQLAlchemy_Async-4169e1?logo=postgresql)
+![Branch](https://img.shields.io/badge/branch-develop-2ea44f)
+
 운영 변경 요청, 승인, 감사 로그, rollback 준비 상태를 추적할 수 있도록 만든 운영 워크플로우 대시보드 프로젝트입니다.
 
 ## 저장소 구성
