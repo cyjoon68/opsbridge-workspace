@@ -1,0 +1,8 @@
+[submodule "opsbridge-fe"]
+	path = opsbridge-fe
+	url = https://github.com/opsbridge-labs/opsbridge-fe.git
+	branch = develop
+[submodule "opsbridge-be"]
+	path = opsbridge-be
+	url = https://github.com/opsbridge-labs/opsbridge-be.git
+	branch = develop
